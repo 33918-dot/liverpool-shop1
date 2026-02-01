@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Liverpool Shop</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        if (localStorage.getItem("isLogin") !== "true") {
+        window.location.href = "login.html";
+        }
+    </script>
+</head>
+<body class="main-page">
+ <header class="header">
+    <h1 class="logo">LIVERPOOL SHOP</h1>
+    <nav class="nav">
+        <a href="#history">คำแนะนำเว็บ</a>
+        <a href="#products">สินค้า</a>
+        <a href="#promo">โปรโมชั่น</a>
+        <a href="#bogo">ซื้อ 1 แถม 1</a>
+        <input
+         type="text"
+         id="searchInput"
+         placeholder="ค้นหาสินค้า..."
+         onkeyup="searchProduct()"
+         class="search-box"
+        />
+        <span id="cart">ตะกร้า: 0 ชิ้น</span>
+        <button onclick="logout()" class="logout-btn">ออกจากระบบ</button>
+    </nav>
+ </header>
+ <section id ="history" class="history">
+    <div class="history-banner">
+      <img src="images/history.jpg" alt="ประวัติศาสตร์สโมสร Liverpool">
+      <div class="history-text">
+        <h2>introduce Liverpool</h2>
+        <p>
+         สโมสรฟุตบอลลิเวอร์พูล (Liverpool FC) ก่อตั้งขึ้นเมื่อวันที่ 3 มิถุนายน ค.ศ. 1892 โดย จอห์น โฮลดิง (John Houlding) หลังจากข้อพิพาทกับเอฟเวอร์ตันเรื่องค่าเช่าสนามแอนฟิลด์ ทำให้เอฟเวอร์ตันย้ายออกไป โฮลดิงจึงสร้างทีมใหม่ขึ้นมาเล่นที่แอนฟิลด์ ทีมฉายา "หงส์แดง" (The Reds) กลายเป็นสโมสรที่ประสบความสำเร็จสูงสุดแห่งหนึ่งในอังกฤษ
+        </p>
+      </div>
+    </div>
+</section>
+
+<section id ="promo" class="promo">
+    <div class="promo-banner">
+    <img src="images/promo.jpg" alt="โปรโมชั่น Liverpool">
+    <div class="promo-text">
+      <h2>20% OFF EVERYTHING</h2>
+    </div>
+  </div>
+</section>
+
+<section id ="bogo" class="promo bogo">
+    <h2 class="promo-title">โปรพิเศษ ! ซื้อเสื้อรุ่นใดก็ได้เพียงแค่1ชิ้น แถมของ 1 ชิ้น</h2>
+    <p class="promo-desc">
+        เฉพาะสินค้า "ประเภท เสื้อ" เท่านั้น<br>
+        เลือกรับของแถมฟรี ผ้าพันคอ หรือแก้วน้ำ
+    </p>
+
+    <h2 class="section-title"> เสื้อที่เข้าร่วมรายการ</h2>
+    <div class="product-slider">
+        <div class="product-card">
+            <img src="images/product2.jpg" alt="เสื้อทีมเหย้า Liverpool รุ่น1">
+            <h3>เสื้อทีมเหย้า รุ่น 1</h3>
+            <p class="price">
+                <span class="new-price">800.00฿</span>
+                <span class="old-price">1000.00฿</span>
+            </p>
+            <button onclick="selectShirt()">เลือกเสื้อตัวนี้</button>
+        </div>
+
+        <div class="product-card">
+            <img src="images/product3.jpg" alt="เสื้อทีมเหย้า Liverpool รุ่น2">
+            <h3>เสื้อทีมเหย้า รุ่น 2</h3>
+            <p class="price">
+                <span class="new-price">800.00฿</span>
+                <span class="old-price">1000.00฿</span>
+            </p>
+            <button onclick="selectShirt()">เลือกเสื้อตัวนี้</button>
+        </div>
+    </div>
+
+    <h2 class="section-title"> เลือกของแถม (เลือกได้ 1 ชิ้น)</h2>
+    <div class="product-slider freebie">
+        <div class="product-card">
+            <img src="images/product1.jpg" class="freebie-img" alt="ผ้าพันคอ Liverpool">
+            <h3>ผ้าพันคอ Liverpool</h3>
+            <p class="price free">ฟรี</p>
+            <button onclick="selectFreebie('scarf')">เลือกผ้าพันคอ</button>
+        </div>
+
+        <div class="product-card">
+            <img src="images/product4.jpg" class="freebie-img" alt="แก้วน้ำ Liverpool">
+            <h3>แก้วน้ำ Liverpool</h3>
+            <p class="price free">ฟรี</p>
+            <button onclick="selectFreebie('cup')">เลือกแก้วน้ำ</button>
+        </div>
+    </div>
+
+    <p id="promo status" class="promostatus">
+        กรุณาซื้อเสื้อ เพื่อรับของแถม
+    </p>
+</section>
+<section id ="products" class="products">
+    <h2 class="section-title">สินค้า liverpool (12 ชิ้น)</h2>
+    <div class="product-slider">
+      <div class="product-card">
+        <img src="img/product1.jpg" alt="ผ้าพันคอลาย Liverpool">
+        <h3>ผ้าพันคอลาย Liverpool</h3>
+        <p class="price">
+         <span class="new-price">312.00฿</span>
+         <span class="old-price">390.00฿</span>
+        </p>
+        <div class="actions">
+         <button onclick="addToCart('ผ้าพันคอ Liverpool', 312)">เพิ่มลงตะกร้า</button>
+         <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      
+      <div class="product-card">
+        <img src="images/product2.jpg" alt="เสื้อทีมเหย้า Liverpool">
+        <h3>เสื้อทีมเหย้า liverpool รุ่น1</h3>
+        <p class="price">
+         <span class="new-price">800.00฿</span>
+         <span class="old-price">1000.00฿</span>
+        </p>
+        <div class="actions">
+          <button onclick="addToCart('เสื้อทีมเหย้า รุ่น 1', 800, 'shirt')">เพิ่มลงตะกร้า</button>
+          <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product3.jpg" alt="เสื้อทีมเหย้า2 Liverpool">
+        <h3>เสื้อทีมเหย้า liverpool รุ่น2</h3>
+        <p class="price">
+         <span class="new-price">800.00฿</span>
+         <span class="old-price">1000.00฿</span>
+        </p>
+        <div class="actions">
+         <button onclick="addToCart('เสื้อทีมเหย้า รุ่น 2', 800, 'shirt')">เพิ่มลงตะกร้า</button>
+         <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product4.jpg" alt="แก้วน้ำ Liverpool">
+        <h3>แก้วน้ำ liverpool</h3>
+        <p class="price">
+         <span class="new-price">160.00฿</span>
+         <span class="old-price">200.00฿</span>
+        </p>
+        <div class="actions">
+         <button onclick="addToCart('แก้วน้ำ Liverpool', 160)">เพิ่มลงตะกร้า</button>
+         <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product5.jpg" alt="รองเท้าสตั๊ด Liverpool">
+        <h3>รองเท้าสตั๊ด liverpool</h3>
+        <p class="price">
+         <span class="new-price">1200.00฿</span>
+         <span class="old-price">1500.00฿</span>
+        </p>
+        <div class="actions">
+          <button onclick="addToCart('รองเท้าสตั๊ด', 1200)">เพิ่มลงตะกร้า</button>
+          <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product6.jpg" alt="รองเท้าผ้าใบสีแดง Liverpool">
+        <h3>รองเท้าผ้าใบสีแดง liverpool</h3>
+        <p class="price">
+         <span class="new-price">1200.00฿</span>
+         <span class="old-price">1500.00฿</span>
+        </p>
+        <div class="actions">
+          <button onclick="addToCart('รองเท้าผ้าใบสีแดง', 1200)">เพิ่มลงตะกร้า</button>
+          <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product7.jpg" alt="รองเท้าผ้าใบสีขาว Liverpool">
+        <h3>รองเท้าผ้าใบสีขาว liverpool</h3>
+        <p class="price">
+         <span class="new-price">1200.00฿</span>
+         <span class="old-price">1500.00฿</span>
+        </p>
+        <div class="actions">
+          <button onclick="addToCart('รองเท้าผ้าใบสีขาว', 1200)">เพิ่มลงตะกร้า</button>
+          <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product8.jpg" alt="กางเกงวอร์ม Liverpool">
+        <h3>กางเกงวอร์ม liverpool</h3>
+        <p class="price">
+         <span class="new-price">719.00฿</span>
+         <span class="old-price">899.00฿</span>
+        </p>
+        <div class="actions">
+          <button onclick="addToCart('กางเกงวอร์ม', 719)">เพิ่มลงตะกร้า</button>
+          <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product9.jpg" alt="ลูกฟุตบอล Liverpool">
+        <h3>ลูกฟุตบอล liverpool</h3>
+        <p class="price">
+         <span class="new-price">799.00฿</span>
+         <span class="old-price">999.00฿</span>
+        </p>
+        <div class="actions">
+          <button onclick="addToCart('ลูกฟุตบอล', 799)">เพิ่มลงตะกร้า</button>
+          <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product10.jpg" alt="กางเกงขาสั้น Liverpool">
+        <h3>กางเกงขาสั้น liverpool</h3>
+        <p class="price">
+         <span class="new-price">479.00฿</span>
+         <span class="old-price">599.00฿</span>
+        </p>
+        <div class="actions">
+          <button onclick="addToCart('กางเกงขาสั้น', 479)">เพิ่มลงตะกร้า</button>
+          <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product11.jpg" alt="hoodie Liverpool">
+        <h3>hoodie liverpool</h3>
+        <p class="price">
+         <span class="new-price">2000.00฿</span>
+         <span class="old-price">2500.00฿</span>
+        </p>
+        <div class="actions">
+          <button onclick="addToCart('hoodie', 2000)">เพิ่มลงตะกร้า</button>
+          <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/product12.jpg" alt="costume training Liverpool">
+        <h3>costume training liverpool</h3>
+        <p class="price">
+         <span class="new-price">2800.00฿</span>
+         <span class="old-price">3500.00฿</span>
+        </p>
+        <div class="actions">
+          <button onclick="addToCart('costume training', 2800)">เพิ่มลงตะกร้า</button>
+          <button class="remove" onclick="removeFromCart()">เอาออก</button>
+        </div>
+      </div>
+    </div>
+</section>
+ 
+<section class="cart-section">
+    <h2>ตะกร้าสินค้า</h2>
+    <ul id="cart-list"></ul>
+    <h3 id="total-price">ราคารวม: 0 ฿</h3>
+</section>
+
+<footer>
+    <p>© 2026 Liverpool Shop - เพื่อการศึกษา</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
